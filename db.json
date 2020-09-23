@@ -1,14 +1,19 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "json-server",
+      "id": "791911c4-cd41-457e-ba29-2fbef025b156",
+      "text": "todos",
       "completed": false
     },
     {
-      "id": 2,
-      "text": "test",
-      "completed": true
+      "id": "08fe6e67-098c-472c-9c1a-fe872a99054d",
+      "text": "new",
+      "completed": false
+    },
+    {
+      "id": "8880f3db-81ee-4b2d-8d24-cefa8e10bff6",
+      "text": "rrr",
+      "completed": false
     }
   ]
 }

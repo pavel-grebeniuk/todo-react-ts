@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type TodoListProps = {
   todos: Todo[],
-  onRemove: (id: number) => void,
-  onCheckCompleted: (id: number) => void,
+  onRemove: (id: string) => void,
+  onCheckCompleted: (id: string) => void,
 }
 
 export const TodoList: React.FC<TodoListProps> = (props: TodoListProps): React.ReactElement => {

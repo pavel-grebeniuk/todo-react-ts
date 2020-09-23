@@ -11,8 +11,8 @@ import {Todo} from "../redux/types/todoTypes";
 
 type TodoProps = {
   todo: Todo,
-  onRemove: (id: number) => void,
-  onCheckCompleted: (id: number) => void,
+  onRemove: (id: string) => void,
+  onCheckCompleted: (id: string) => void,
 }
 
 export const TodoItem: React.FC<TodoProps> = (

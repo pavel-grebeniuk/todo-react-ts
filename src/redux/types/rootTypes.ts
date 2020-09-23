@@ -8,5 +8,5 @@ export interface rootState {
 export interface requestState {
   readonly loading: boolean
   readonly error: string | null
-  loaded: boolean;
+  loaded?: boolean;
 }

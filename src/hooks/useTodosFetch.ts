@@ -6,13 +6,14 @@ import {AppState} from "../redux/reducers/rootReducer";
 
 export const useTodosFetch = (): TodosState => {
   const dispatch = useDispatch();
-  const {entities, fetchRequest} = useSelector<AppState, TodosState>(state => state.todo);
+  const {entities, fetchRequest, createRequest} = useSelector<AppState, TodosState>(state => state.todo);
   useEffect(() => {
     dispatch(fetchStart());
   }, [dispatch]);
 
   return {
     entities,
-    fetchRequest
+    fetchRequest,
+    createRequest
   };
 };
