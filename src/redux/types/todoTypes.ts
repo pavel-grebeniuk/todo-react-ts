@@ -2,9 +2,15 @@ import {
   CREATE_TODO,
   CREATE_TODO_ERROR,
   CREATE_TODO_SUCCESS,
+  DELETE_TODO,
+  DELETE_TODO_ERROR,
+  DELETE_TODO_SUCCESS,
   FETCH_TODOS_ERROR,
   FETCH_TODOS_START,
-  FETCH_TODOS_SUCCESS
+  FETCH_TODOS_SUCCESS,
+  UPDATE_TODO,
+  UPDATE_TODO_ERROR,
+  UPDATE_TODO_SUCCESS
 } from "../actions/todoAction";
 import {requestState} from "./rootTypes";
 
@@ -12,6 +18,7 @@ export interface TodosState {
   readonly entities: Array<Todo>,
   readonly fetchRequest: requestState
   readonly createRequest: requestState
+  readonly deleteRequest: requestState
 }
 
 export interface Todo {
@@ -48,6 +55,34 @@ export interface CreateTodoError {
   payload: string
 }
 
+export interface DeleteTodo {
+  type: typeof DELETE_TODO,
+  payload: string
+}
+
+export interface DeleteTodoSuccess {
+  type: typeof DELETE_TODO_SUCCESS,
+}
+
+export interface DeleteTodoError {
+  type: typeof DELETE_TODO_ERROR,
+  payload: string
+}
+
+export interface updateTodo {
+  type: typeof UPDATE_TODO,
+  payload: Todo
+}
+
+export interface updateTodoSuccess {
+  type: typeof UPDATE_TODO_SUCCESS,
+}
+
+export interface updateTodoError {
+  type: typeof UPDATE_TODO_ERROR,
+  payload: string
+}
+
 export type TodosActionType =
   FetchTodosSuccessAction
   | FetchTodosStartAction
@@ -55,3 +90,9 @@ export type TodosActionType =
   | CreateTodo
   | CreateTodoSuccess
   | CreateTodoError
+  | DeleteTodo
+  | DeleteTodoSuccess
+  | DeleteTodoError
+  | updateTodo
+  | updateTodoSuccess
+  | updateTodoError

@@ -1,6 +1,6 @@
 import {Todo} from "../redux/types/todoTypes";
 
-const baseUrl = "http://localhost:3030/todos";
+const baseUrl = "http://localhost:3030/todos/";
 
 export const api = {
   todos: {
@@ -12,6 +12,19 @@ export const api = {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(res => res.json())
+    }).then(res => res.json()),
+    delete: (id: string): Promise<any> => fetch(baseUrl + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }),
+    update: (id: string, todo: any):Promise<any> => fetch(baseUrl + id, {
+      method: "PUT",
+      body: todo,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }),
   }
 };

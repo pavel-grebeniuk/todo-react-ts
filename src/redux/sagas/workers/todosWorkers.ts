@@ -5,10 +5,15 @@ import {api} from "../../../helper/api";
 import {
   createTodoError,
   createTodoSuccess,
+  deleteTodoError,
+  deleteTodoSuccess,
   fetchData,
-  fetchError, fetchStart
+  fetchError,
+  fetchStart,
+  updateTodoError,
+  updateTodoSuccess
 } from "../../actions/todoAction";
-import {CreateTodo, Todo} from "../../types/todoTypes";
+import {CreateTodo, Todo, updateTodo} from "../../types/todoTypes";
 
 export function* fetchTodosWorker(): SagaIterator {
   try {
@@ -35,5 +40,33 @@ export function* createTodoWorker({payload}: CreateTodo): SagaIterator {
     }
   } catch (e) {
     yield put(createTodoError(e.message));
+  }
+}
+
+export function* deleteTodoWorker({payload}: CreateTodo): SagaIterator {
+  try {
+    const response = yield call(api.todos.delete, payload);
+    if (response.ok) {
+      yield put(deleteTodoSuccess());
+      yield put(fetchStart());
+    } else {
+      throw new Error("Delete error");
+    }
+  } catch (e) {
+    yield put(deleteTodoError(e.message));
+  }
+}
+
+export function* updateTodoWorker({payload}: updateTodo): SagaIterator {
+  try {
+    const response = yield call(api.todos.update, payload.id, JSON.stringify(payload));
+    if (response.ok) {
+      yield put(updateTodoSuccess());
+      yield put(fetchStart());
+    } else {
+      throw new Error("Update error");
+    }
+  } catch (e) {
+    yield put(updateTodoError(e.message));
   }
 }

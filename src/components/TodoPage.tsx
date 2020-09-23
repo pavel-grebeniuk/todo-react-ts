@@ -4,18 +4,20 @@ import {CreateTodo} from "../CreateTodo";
 import {Container} from "@material-ui/core";
 import {useTodosFetch} from "../hooks/useTodosFetch";
 import {useDispatch} from "react-redux";
-import {createTodo} from "../redux/actions/todoAction";
+import {createTodo, deleteTodo, updateTodo} from "../redux/actions/todoAction";
+import {Todo} from "../redux/types/todoTypes";
 
 export const TodoPage: React.FC = () => {
   const {entities: todos} = useTodosFetch();
   const dispatch = useDispatch();
 
   const onRemove = (id: string): void => {
-
+    dispatch(deleteTodo(id));
   };
 
-  const onCheckCompleted = (id: string): void => {
-
+  const onCheckCompleted = (todo: Todo): void => {
+    const updatedTodo = {...todo, completed: !todo.completed};
+    dispatch(updateTodo(updatedTodo));
   };
 
   const onAddTodo = (text: string): void => {

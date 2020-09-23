@@ -12,7 +12,7 @@ import {Todo} from "../redux/types/todoTypes";
 type TodoProps = {
   todo: Todo,
   onRemove: (id: string) => void,
-  onCheckCompleted: (id: string) => void,
+  onCheckCompleted: (todo: Todo) => void,
 }
 
 export const TodoItem: React.FC<TodoProps> = (
@@ -23,11 +23,11 @@ export const TodoItem: React.FC<TodoProps> = (
     <ListItem dense button>
       <ListItemIcon>
         <Checkbox
-          // checked={completed}
+          checked={completed}
           edge="start"
           tabIndex={-1}
           disableRipple
-          onChange={() => onCheckCompleted(id)}
+          onChange={() => onCheckCompleted(todo)}
         />
       </ListItemIcon>
       <ListItemText primary={text}/>

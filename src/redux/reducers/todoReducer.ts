@@ -3,6 +3,9 @@ import {
   CREATE_TODO,
   CREATE_TODO_ERROR,
   CREATE_TODO_SUCCESS,
+  DELETE_TODO,
+  DELETE_TODO_ERROR,
+  DELETE_TODO_SUCCESS,
   FETCH_TODOS_ERROR,
   FETCH_TODOS_START,
   FETCH_TODOS_SUCCESS
@@ -16,6 +19,10 @@ const initialState: TodosState = {
     loaded: false
   },
   createRequest: {
+    loading: false,
+    error: null,
+  },
+  deleteRequest: {
     loading: false,
     error: null,
   }
@@ -74,6 +81,31 @@ export const todoReducer = (state = initialState,
       return {
         ...state, createRequest: {
           ...state.createRequest,
+          loading: false,
+          error: action.payload
+        }
+      };
+
+    case DELETE_TODO:
+      return {
+        ...state, deleteRequest: {
+          ...state.deleteRequest,
+          loading: true
+        }
+      };
+
+    case DELETE_TODO_SUCCESS:
+      return {
+        ...state, deleteRequest: {
+          ...state.deleteRequest,
+          loading: false
+        }
+      };
+
+    case DELETE_TODO_ERROR:
+      return {
+        ...state, deleteRequest: {
+          ...state.deleteRequest,
           loading: false,
           error: action.payload
         }
