@@ -2,17 +2,29 @@ import * as React from "react";
 import List from "@material-ui/core/List";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {TodoItem} from "./TodoItem";
+import {Todo} from "../redux/types/todoTypes";
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({}),
 );
 
-export const TodoList: React.FC = () => {
+type TodoListProps = {
+  todos: Todo[],
+  onRemove: (id: number) => void,
+  onCheckCompleted: (id: number) => void,
+}
+
+export const TodoList: React.FC<TodoListProps> = (props: TodoListProps): React.ReactElement => {
+  const {todos, onRemove, onCheckCompleted} = props;
   const classes = useStyles();
   return (
     <List component="nav">
-      <TodoItem/>
+      <TodoItem
+        todo={todos[0]}
+        onCheckCompleted={onCheckCompleted}
+        onRemove={onRemove}
+      />
     </List>
   );
 };

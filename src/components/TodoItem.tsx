@@ -1,48 +1,48 @@
 import * as React from "react";
-import {Checkbox, Grid, IconButton, Typography} from "@material-ui/core";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import ListItem from "@material-ui/core/ListItem";
+import {Todo} from "../redux/types/todoTypes";
 
+type TodoProps = {
+  todo: Todo,
+  onRemove: (id: number) => void,
+  onCheckCompleted: (id: number) => void,
+}
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    text: {
-      flexGrow: 1,
-      padding: "0 10px"
-    },
-  }),
-);
+export const TodoItem: React.FC<TodoProps> = (
+  {todo, onRemove, onCheckCompleted}: TodoProps): React.ReactElement => {
+  const {text, completed, id} = todo;
 
-
-export const TodoItem: React.FC = () => {
-  const classes = useStyles();
   return (
-    <ListItem button>
-      <Grid container alignItems="center" justify="space-between">
-        <Grid item>
-          <Checkbox
-            color="primary"
-            inputProps={{"aria-label": "secondary checkbox"}}
-          />
-        </Grid>
-        <Grid item className={classes.text}>
-          <Typography>
-            text
-          </Typography>
-        </Grid>
-        <Grid item>
-          <IconButton aria-label="edit" size='small'>
-            <EditIcon/>
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton aria-label="delete" size='small'>
-            <DeleteIcon/>
-          </IconButton>
-        </Grid>
-      </Grid>
+    <ListItem dense button>
+      <ListItemIcon>
+        <Checkbox
+          // checked={completed}
+          edge="start"
+          tabIndex={-1}
+          disableRipple
+          onChange={() => onCheckCompleted(id)}
+        />
+      </ListItemIcon>
+      <ListItemText primary={text}/>
+      <ListItemSecondaryAction>
+        <IconButton edge="end" aria-label="edit" size="small">
+          <EditIcon/>
+        </IconButton>
+        <IconButton edge="end"
+                    aria-label="delete"
+                    size="small"
+                    onClick={() => onRemove(id)}
+        >
+          <DeleteIcon color='error'/>
+        </IconButton>
+      </ListItemSecondaryAction>
     </ListItem>
   );
 };
