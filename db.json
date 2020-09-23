@@ -2,13 +2,13 @@
   "todos": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "text": "json-server",
+      "completed": false
     },
     {
       "id": 2,
-      "title": "test",
-      "author": "typicode"
+      "text": "test",
+      "completed": true
     }
   ]
 }

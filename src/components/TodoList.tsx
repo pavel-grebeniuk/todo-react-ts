@@ -20,11 +20,16 @@ export const TodoList: React.FC<TodoListProps> = (props: TodoListProps): React.R
   const classes = useStyles();
   return (
     <List component="nav">
-      <TodoItem
-        todo={todos[0]}
-        onCheckCompleted={onCheckCompleted}
-        onRemove={onRemove}
-      />
+      {
+        todos.map(todo => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onCheckCompleted={onCheckCompleted}
+            onRemove={onRemove}
+          />
+        ))
+      }
     </List>
   );
 };

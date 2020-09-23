@@ -3,9 +3,11 @@ import {
   FETCH_TODOS_START,
   FETCH_TODOS_SUCCESS
 } from "../actions/todoAction";
+import {requestState} from "./rootTypes";
 
-export interface todosState {
-  readonly entities: Array<Todo>
+export interface TodosState {
+  readonly entities: Array<Todo>,
+  readonly fetchRequest: requestState
 }
 
 export interface Todo {

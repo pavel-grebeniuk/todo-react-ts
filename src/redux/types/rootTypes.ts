@@ -1,7 +1,7 @@
-import {todosState} from "./todoTypes";
+import {TodosState} from "./todoTypes";
 
 export interface rootState {
-  readonly todos: todosState
+  readonly todos: TodosState
   readonly request: requestState;
 }
 
