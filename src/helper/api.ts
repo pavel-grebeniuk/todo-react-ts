@@ -2,10 +2,28 @@ import {Todo} from "../redux/types/todoTypes";
 
 const baseUrl = "http://localhost:3030/";
 
+type E = {
+  statusText: string,
+}
+
+const fetchApi = async <T, E>(url: string, method: string, body: string | null): Promise<T | E> => {
+  const response = await fetch(url, {
+    method: method,
+    body: body,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error(response.statusText);
+  }
+};
+
 export const api = {
   todos: {
-    getAll: (): Promise<Todo[]> => fetch(baseUrl + "todos/")
-      .then(res => res.json()),
+    getAll: () => fetchApi<Todo[], E>(baseUrl + "todos/", "GET", null),
 
     create: (todo: string): Promise<Todo> => fetch(baseUrl + "todos/", {
       method: "POST",
