@@ -1,4 +1,4 @@
-import {Todo, TodosActionType} from "../types/todoTypes";
+import {NewTodo, Todo, TodosActionType} from "../types/todoTypes";
 
 export const FETCH_TODOS_START = "FETCH_TODOS_START";
 export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
@@ -34,10 +34,10 @@ export const fetchError = (error: string): TodosActionType => {
   };
 };
 
-export const createTodo = (text: string): TodosActionType => {
+export const createTodo = (todo: NewTodo): TodosActionType => {
   return {
     type: CREATE_TODO,
-    payload: text
+    payload: todo
   };
 };
 
@@ -54,7 +54,7 @@ export const createTodoError = (error: string): TodosActionType => {
   };
 };
 
-export const deleteTodo = (id: string): TodosActionType => {
+export const deleteTodo = (id: number): TodosActionType => {
   return {
     type: DELETE_TODO,
     payload: id

@@ -19,10 +19,14 @@ export interface TodosState {
   readonly fetchRequest: requestState
   readonly createRequest: requestState
   readonly deleteRequest: requestState
+  readonly updateRequest: requestState
 }
 
-export interface Todo {
-  id: string;
+export interface Todo extends NewTodo {
+  id: number;
+}
+
+export interface NewTodo {
   text: string;
   completed: boolean;
 }
@@ -43,7 +47,7 @@ interface FetchTodosErrorAction {
 
 export interface CreateTodo {
   type: typeof CREATE_TODO,
-  payload: string
+  payload: NewTodo
 }
 
 export interface CreateTodoSuccess {
@@ -57,7 +61,7 @@ export interface CreateTodoError {
 
 export interface DeleteTodo {
   type: typeof DELETE_TODO,
-  payload: string
+  payload: number
 }
 
 export interface DeleteTodoSuccess {

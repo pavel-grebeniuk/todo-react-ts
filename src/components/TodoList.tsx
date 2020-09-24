@@ -1,23 +1,12 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {TodoItem} from "./TodoItem";
-import {Todo} from "../redux/types/todoTypes";
+import {useTodosFetch} from "../hooks/useTodosFetch";
 
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({}),
-);
+export const TodoList: React.FC = (): React.ReactElement => {
+  const {entities: todos} = useTodosFetch();
 
-type TodoListProps = {
-  todos: Todo[],
-  onRemove: (id: string) => void,
-  onCheckCompleted: (todo: Todo) => void,
-}
-
-export const TodoList: React.FC<TodoListProps> = (props: TodoListProps): React.ReactElement => {
-  const {todos, onRemove, onCheckCompleted} = props;
-  const classes = useStyles();
   return (
     <List component="nav">
       {
@@ -25,8 +14,6 @@ export const TodoList: React.FC<TodoListProps> = (props: TodoListProps): React.R
           <TodoItem
             key={todo.id}
             todo={todo}
-            onCheckCompleted={onCheckCompleted}
-            onRemove={onRemove}
           />
         ))
       }

@@ -25,7 +25,11 @@ const initialState: TodosState = {
   deleteRequest: {
     loading: false,
     error: null,
-  }
+  },
+  updateRequest: {
+    loading: false,
+    error: null,
+  },
 };
 
 export const todoReducer = (state = initialState,

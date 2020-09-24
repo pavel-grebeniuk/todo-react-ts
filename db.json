@@ -2,18 +2,23 @@
   "todos": [
     {
       "id": "11323e12-8b71-4297-b0b4-e232acb240ef",
-      "text": "erer",
+      "text": "todo#1",
       "completed": false
     },
     {
-      "id": "f9e36768-2357-45ad-a8d4-0e3b6a127edf",
-      "text": "dfdfd",
-      "completed": false
+      "text": "new todo1",
+      "completed": true,
+      "id": "gWai5cM"
     },
     {
-      "id": "ca8792ef-3416-4175-bb56-afaedecebd24",
-      "text": "react",
-      "completed": true
+      "text": "testfdfdf",
+      "completed": false,
+      "id": "tzf9j4C"
+    },
+    {
+      "text": "fdfdf",
+      "completed": false,
+      "id": "V28WXOA"
     }
   ]
 }
