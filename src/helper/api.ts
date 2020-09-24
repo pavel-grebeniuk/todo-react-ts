@@ -2,7 +2,7 @@ import {Todo} from "../redux/types/todoTypes";
 
 const baseUrl = "http://localhost:3030/";
 
-type E = {
+type Error = {
   statusText: string,
 }
 
@@ -23,21 +23,8 @@ const fetchApi = async <T, E>(url: string, method: string, body: string | null):
 
 export const api = {
   todos: {
-    getAll: () => fetchApi<Todo[], E>(baseUrl + "todos/", "GET", null),
-
-    create: (todo: string): Promise<Todo> => fetch(baseUrl + "todos/", {
-      method: "POST",
-      body: todo,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error(res.statusText);
-      }
-    }),
+    getAll: () => fetchApi<Todo[], Error>(baseUrl + "todos/", "GET", null),
+    create: (todo: string) => fetchApi<Todo, Error>(baseUrl + "todos/", "POST", todo),
 
     delete: (id: number): Promise<any> => fetch(baseUrl + "todos/" + id, {
       method: "DELETE",
