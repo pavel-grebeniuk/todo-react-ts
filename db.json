@@ -1,12 +1,7 @@
 {
   "todos": [
     {
-      "text": "test",
-      "completed": false,
-      "id": 1
-    },
-    {
-      "text": "fggfg",
+      "text": "dfdf",
       "completed": false,
       "id": 2
     },
@@ -14,6 +9,11 @@
       "text": "dfdf",
       "completed": true,
       "id": 3
+    },
+    {
+      "text": "fdfd",
+      "completed": true,
+      "id": 4
     }
   ]
 }
