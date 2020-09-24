@@ -6,7 +6,7 @@ type SnackbarComponentProps = {
   message: string | null,
   severity: "success" | "error",
   open: boolean,
-  setOpen: (open: boolean) => void
+  setOpen: (open: boolean) => void,
 }
 
 
@@ -19,6 +19,7 @@ export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props: Snack
 
   return (
     <Snackbar
+      anchorOrigin={{vertical: "top", horizontal: "center"}}
       open={open}
       onClose={handleClose}
       autoHideDuration={3000}

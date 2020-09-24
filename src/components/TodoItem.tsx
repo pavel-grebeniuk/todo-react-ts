@@ -12,6 +12,19 @@ import {Todo} from "../redux/types/todoTypes";
 import {EditTodo} from "./EditTodo";
 import {deleteTodo, updateTodo} from "../redux/actions/todoAction";
 import {useDispatch} from "react-redux";
+import {Box} from "@material-ui/core";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    todoCompleted: {
+      textDecoration: "line-through",
+      color: theme.palette.text.secondary
+    }
+  }),
+);
+
 
 export type TodoProps = {
   todo: Todo,
@@ -19,6 +32,9 @@ export type TodoProps = {
 
 export const TodoItem: React.FC<TodoProps> = (
   {todo}: TodoProps): React.ReactElement => {
+
+  const classes = useStyles();
+
   const {text, completed, id} = todo;
   const [editMode, setEditMode] = useState<boolean>(false);
   const dispatch = useDispatch();
@@ -49,12 +65,18 @@ export const TodoItem: React.FC<TodoProps> = (
                 onChange={() => onCheckCompleted(todo)}
               />
             </ListItemIcon>
-            <ListItemText primary={text}/>
+            <ListItemText>
+              <Box className={todo.completed ? classes.todoCompleted : ""}>
+                {text}
+              </Box>
+            </ListItemText>
             <ListItemSecondaryAction>
               <IconButton edge="end"
                           aria-label="edit"
                           size="small"
                           onClick={() => setEditMode(true)}
+                          disabled={todo.completed}
+                          color="primary"
               >
                 <EditIcon/>
               </IconButton>

@@ -35,9 +35,7 @@ export const TodoList: React.FC = (): React.ReactElement => {
   const error = fetchError || createError || updateError || deleteError;
 
   useEffect(() => {
-    if (error) {
-      setOpen(true);
-    }
+    setOpen(!!error);
   }, [error]);
 
   return (
