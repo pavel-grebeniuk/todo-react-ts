@@ -23,7 +23,9 @@ export const EditTodo: React.FC<EditTodoProps> = (props: EditTodoProps): React.R
     const newTodo: Todo = {
       ...todo, text: todoText
     };
-    dispatch(updateTodo(newTodo));
+    if (todoText !== todo.text) {
+      dispatch(updateTodo(newTodo));
+    }
     setEditMode(false);
   };
 

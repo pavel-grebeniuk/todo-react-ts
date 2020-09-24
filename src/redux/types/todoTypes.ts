@@ -12,14 +12,14 @@ import {
   UPDATE_TODO_ERROR,
   UPDATE_TODO_SUCCESS
 } from "../actions/todoAction";
-import {requestState} from "./rootTypes";
+import {RequestState} from "./rootTypes";
 
 export interface TodosState {
   readonly entities: Array<Todo>,
-  readonly fetchRequest: requestState
-  readonly createRequest: requestState
-  readonly deleteRequest: requestState
-  readonly updateRequest: requestState
+  readonly fetchRequest: RequestState
+  readonly createRequest: RequestState
+  readonly deleteRequest: RequestState
+  readonly updateRequest: RequestState
 }
 
 export interface Todo extends NewTodo {

@@ -8,28 +8,26 @@ import {
   DELETE_TODO_SUCCESS,
   FETCH_TODOS_ERROR,
   FETCH_TODOS_START,
-  FETCH_TODOS_SUCCESS
+  FETCH_TODOS_SUCCESS,
+  UPDATE_TODO,
+  UPDATE_TODO_ERROR,
+  UPDATE_TODO_SUCCESS
 } from "../actions/todoAction";
+import {RequestState} from "../types/rootTypes";
+
+
+const requestState: RequestState = {
+  loading: false,
+  error: null,
+  loaded: false
+};
 
 const initialState: TodosState = {
   entities: [],
-  fetchRequest: {
-    loading: false,
-    error: null,
-    loaded: false
-  },
-  createRequest: {
-    loading: false,
-    error: null,
-  },
-  deleteRequest: {
-    loading: false,
-    error: null,
-  },
-  updateRequest: {
-    loading: false,
-    error: null,
-  },
+  fetchRequest: requestState,
+  createRequest: requestState,
+  deleteRequest: requestState,
+  updateRequest: requestState,
 };
 
 export const todoReducer = (state = initialState,
@@ -77,7 +75,8 @@ export const todoReducer = (state = initialState,
       return {
         ...state, createRequest: {
           ...state.createRequest,
-          loading: false
+          loading: false,
+          loaded: true
         }
       };
 
@@ -102,7 +101,8 @@ export const todoReducer = (state = initialState,
       return {
         ...state, deleteRequest: {
           ...state.deleteRequest,
-          loading: false
+          loading: false,
+          loaded: true
         }
       };
 
@@ -110,6 +110,32 @@ export const todoReducer = (state = initialState,
       return {
         ...state, deleteRequest: {
           ...state.deleteRequest,
+          loading: false,
+          error: action.payload
+        }
+      };
+
+    case UPDATE_TODO:
+      return {
+        ...state, updateRequest: {
+          ...state.updateRequest,
+          loading: true
+        }
+      };
+
+    case UPDATE_TODO_SUCCESS:
+      return {
+        ...state, updateRequest: {
+          ...state.updateRequest,
+          loading: false,
+          loaded: true
+        }
+      };
+
+    case UPDATE_TODO_ERROR:
+      return {
+        ...state, updateRequest: {
+          ...state.updateRequest,
           loading: false,
           error: action.payload
         }

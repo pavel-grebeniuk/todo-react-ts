@@ -2,11 +2,10 @@ import {TodosState} from "./todoTypes";
 
 export interface rootState {
   readonly todos: TodosState
-  readonly request: requestState;
 }
 
-export interface requestState {
+export interface RequestState {
   readonly loading: boolean
   readonly error: string | null
-  loaded?: boolean;
+  loaded: boolean;
 }
