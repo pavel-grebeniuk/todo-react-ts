@@ -45,7 +45,6 @@ const fetchApi = async <T, E>(url: string, method: HTTPMethod, body: string | nu
       "Content-Type": "application/json"
     }
   });
-
   if (response.ok) {
     return response.json();
   } else {

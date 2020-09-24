@@ -16,22 +16,22 @@ export const CreateTodo: React.FC = (): React.ReactElement => {
   };
 
   const addTodoHandler = (e: React.KeyboardEvent): void => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && todoText.trim()) {
       const todo: NewTodo = {
-        text: todoText,
+        text: todoText.trim(),
         completed: false
       };
       dispatch(createTodo(todo));
       setTodoText("");
     }
   };
-
+  console.log('create');
   return (
     <TextField
       id="standard-basic"
       label="Add new todo"
       value={todoText}
-      onChange={inputHandler}
+      onInput={inputHandler}
       onKeyPress={addTodoHandler}
     />
   );

@@ -30,15 +30,13 @@ export const TodoList: React.FC = (): React.ReactElement => {
 
   const [open, setOpen] = useState<boolean>(false);
 
-
   const isLoading = fetchLoading || createLoading || updateLoading || deleteLoading;
   const error = fetchError || createError || updateError || deleteError;
 
   useEffect(() => {
-    if (error) {
-      setOpen(true);
-    }
+    setOpen(!!error);
   }, [error]);
+  console.log("list");
 
   return (
     <>
@@ -60,10 +58,13 @@ export const TodoList: React.FC = (): React.ReactElement => {
             }
           </List>
       }
-      <SnackbarComponent message={error}
-                         severity={error ? "error" : "success"}
-                         open={open}
-                         setOpen={setOpen}/>
+      {
+        open && <SnackbarComponent message={error}
+                                   severity={error ? "error" : "success"}
+                                   open={open}
+                                   setOpen={setOpen}/>
+      }
     </>
+
   );
 };

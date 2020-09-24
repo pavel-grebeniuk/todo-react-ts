@@ -69,7 +69,7 @@ export const todoReducer = (state = initialState,
         ...state, createRequest: {
           ...state.createRequest,
           loading: true,
-          error: null
+          error: null,
         }
       };
 
@@ -87,7 +87,8 @@ export const todoReducer = (state = initialState,
         ...state, createRequest: {
           ...state.createRequest,
           loading: false,
-          error: action.payload
+          error: action.payload,
+          loaded: false
         }
       };
 
@@ -114,7 +115,8 @@ export const todoReducer = (state = initialState,
         ...state, deleteRequest: {
           ...state.deleteRequest,
           loading: false,
-          error: action.payload
+          error: action.payload,
+          loaded: false
         }
       };
 
@@ -141,7 +143,8 @@ export const todoReducer = (state = initialState,
         ...state, updateRequest: {
           ...state.updateRequest,
           loading: false,
-          error: action.payload
+          error: action.payload,
+          loaded: false
         }
       };
 
