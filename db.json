@@ -1,29 +1,19 @@
 {
   "todos": [
     {
-      "text": "todo #1",
-      "completed": true,
-      "id": 1
-    },
-    {
-      "text": "todo #21",
+      "text": "dfdf",
       "completed": false,
       "id": 2
     },
     {
-      "text": "new",
+      "text": "dfdf",
       "completed": true,
       "id": 3
     },
     {
-      "text": "dfd",
-      "completed": false,
+      "text": "fdfd",
+      "completed": true,
       "id": 4
-    },
-    {
-      "text": "fdf",
-      "completed": false,
-      "id": 5
     }
   ]
 }

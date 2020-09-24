@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {TodoItem} from "./TodoItem";
 import {useTodosFetch} from "../hooks/useTodosFetch";
@@ -6,6 +7,7 @@ import {LoaderComponent} from "./Loader";
 import {Box} from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import {SnackbarComponent} from "./SnackbarComponent";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,24 +18,35 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const TodoList: React.FC = (): React.ReactElement => {
-  const {
-    entities: todos,
-    fetchRequest: {loading: fetchLoading, loaded},
-    createRequest: {loading: createLoading},
-    updateRequest: {loading: updateLoading},
-    deleteRequest: {loading: deleteLoading}
-  } = useTodosFetch();
-
   const classes = useStyles();
 
+  const {
+    entities: todos,
+    fetchRequest: {loading: fetchLoading, loaded, error: fetchError},
+    createRequest: {loading: createLoading, error: createError},
+    updateRequest: {loading: updateLoading, error: updateError},
+    deleteRequest: {loading: deleteLoading, error: deleteError}
+  } = useTodosFetch();
+
+  const [open, setOpen] = useState<boolean>(false);
+
+
   const isLoading = fetchLoading || createLoading || updateLoading || deleteLoading;
+  const error = fetchError || createError || updateError || deleteError;
+
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    }
+  }, [error]);
+
   return (
     <>
       <Box className={classes.loaderBox}>
         {isLoading && <LoaderComponent/>}
       </Box>
       {
-        !todos.length && loaded?
+        !todos.length && loaded ?
           <Alert severity="warning">Todolist is empty!</Alert>
           :
           <List component="nav">
@@ -47,7 +60,10 @@ export const TodoList: React.FC = (): React.ReactElement => {
             }
           </List>
       }
-
+      <SnackbarComponent message={error}
+                         severity={error ? "error" : "success"}
+                         open={open}
+                         setOpen={setOpen}/>
     </>
   );
 };
