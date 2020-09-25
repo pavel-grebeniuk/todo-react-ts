@@ -7,8 +7,18 @@ import {useHistory, useParams} from "react-router-dom";
 import {AppState} from "../redux/reducers/rootReducer";
 import {Todo, TodosState} from "../redux/types/todoTypes";
 import {updateTodo} from "../redux/actions/todoAction";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    editBtn: {
+      margin: '0 5px'
+    }
+  }),
+);
 
 export const EditTodo: React.FC = () => {
+    const classes = useStyles();
     const {id} = useParams<{ id: string }>();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -57,6 +67,7 @@ export const EditTodo: React.FC = () => {
             color="primary"
             variant="outlined"
             onClick={editHandler}
+            className={classes.editBtn}
           >
             Save
           </Button>
@@ -65,6 +76,7 @@ export const EditTodo: React.FC = () => {
             size="small"
             color="secondary"
             variant="outlined"
+            className={classes.editBtn}
             onClick={(): void => {
               history.push("/");
             }}

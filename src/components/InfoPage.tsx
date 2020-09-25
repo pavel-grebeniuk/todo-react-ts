@@ -35,7 +35,7 @@ export const InfoPage: React.FC = () => {
               color='primary'
               onClick={clickHandler}
       >
-        Back
+        Back to home page
       </Button>
     </Box>
   );

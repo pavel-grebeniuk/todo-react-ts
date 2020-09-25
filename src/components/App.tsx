@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export const App: React.FC = () => {
   const classes = useStyles();
   return (
@@ -29,13 +28,11 @@ export const App: React.FC = () => {
         <NavBar/>
         <Container className={classes.pageContainer}>
           <Switch>
-            <Route path="/" exact>
-              <Router>
-                <Switch>
-                  <Route path="/" exact component={TodoPage}/>
-                  <Route path="/edit/:id" component={EditTodo}/>
-                </Switch>
-              </Router>
+            <Route path={["/", "/edit/:id"]} exact>
+              <Switch>
+                <Route path="/" exact component={TodoPage}/>
+                <Route path="/edit/:id" component={EditTodo}/>
+              </Switch>
             </Route>
             <Route path="/about" component={InfoPage}/>
             <Route path='*' component={NotFound}/>
