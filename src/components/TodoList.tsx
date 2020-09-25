@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const TodoList: React.FC = (): React.ReactElement => {
+export const TodoList: React.FC = (props): React.ReactElement => {
   const classes = useStyles();
 
   const {
@@ -36,7 +36,6 @@ export const TodoList: React.FC = (): React.ReactElement => {
   useEffect(() => {
     setOpen(!!error);
   }, [error]);
-  console.log("list");
 
   return (
     <>
@@ -65,6 +64,5 @@ export const TodoList: React.FC = (): React.ReactElement => {
                                    setOpen={setOpen}/>
       }
     </>
-
   );
 };

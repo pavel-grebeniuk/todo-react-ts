@@ -11,7 +11,7 @@ type EditTodoProps = {
   setEditMode: (editMode: boolean) => void
 }
 
-export const EditTodo: React.FC<EditTodoProps> = (props: EditTodoProps): React.ReactElement => {
+export const EditTodo: React.FC<EditTodoProps> = (props): React.ReactElement => {
   const {todo, setEditMode} = props;
   const dispatch = useDispatch();
 

@@ -25,7 +25,7 @@ export const CreateTodo: React.FC = (): React.ReactElement => {
       setTodoText("");
     }
   };
-  console.log('create');
+
   return (
     <TextField
       id="standard-basic"

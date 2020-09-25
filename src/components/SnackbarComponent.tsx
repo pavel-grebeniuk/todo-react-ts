@@ -10,7 +10,7 @@ type SnackbarComponentProps = {
 }
 
 
-export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props: SnackbarComponentProps): React.ReactElement => {
+export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props): React.ReactElement => {
   const {severity, message, open, setOpen} = props;
 
   const handleClose = () => {

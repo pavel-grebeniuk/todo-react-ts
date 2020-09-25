@@ -25,13 +25,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export type TodoProps = {
   todo: Todo,
 }
 
 export const TodoItem: React.FC<TodoProps> = (
-  {todo}: TodoProps): React.ReactElement => {
+  {todo}): React.ReactElement => {
 
   const classes = useStyles();
 
