@@ -4,22 +4,35 @@ import {TodoItem} from "./TodoItem";
 import Alert from "@material-ui/lab/Alert";
 import {useSelector} from "react-redux";
 import {AppState} from "../redux/reducers/rootReducer";
-import {TodosState} from "../redux/types/todoTypes";
+import {Todo, TodosState} from "../redux/types/todoTypes";
 import {useTodosFetch} from "../hooks/useTodosFetch";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    emptyBox: {
+      marginTop: theme.spacing(2),
+    }
+  }),
+);
 
 export const TodoList: React.FC = (): React.ReactElement => {
   useTodosFetch();
-  const {
-    entities: todos,
-    fetchRequest: {loaded},
-  } = useSelector<AppState, TodosState>(state => state.todo);
+  const classes = useStyles();
+
+  const selectCompleted = (todos: Todo[], flag: boolean): Todo[] => {
+    return flag ? todos : todos.filter(el => el.completed) as Todo[];
+  };
+  const {fetchRequest: {loaded}} = useSelector<AppState, TodosState>(state => state.todo);
+  const todos = useSelector<AppState, Todo[]>(state => selectCompleted(state.todo.entities, state.todo.showAll));
 
   return (
     <>
       {
         !todos.length && loaded ?
-          <Alert severity="warning">Todolist is empty!</Alert>
+          <Alert severity="warning"
+                 className={classes.emptyBox}
+          >Todolist is empty!</Alert>
           :
           <List component="nav">
             {

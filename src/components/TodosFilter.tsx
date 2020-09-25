@@ -1,10 +1,10 @@
 import * as React from "react";
-import {useState} from "react";
 import {Box, Button} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../redux/reducers/rootReducer";
 import {TodosState} from "../redux/types/todoTypes";
+import {changeFilter} from "../redux/actions/todoAction";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,27 +19,26 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const TodosFilter: React.FC = () => {
   const classes = useStyles();
-  const {showAll: filter} = useSelector<AppState, TodosState>(state => state.todo);
+  const dispatch = useDispatch();
+  const {showAll} = useSelector<AppState, TodosState>(state => state.todo);
 
-  const [all, showAll] = useState(filter);
-
-  const changeHandler = (): void => {
-    showAll(prev => !prev);
+  const changeHandler = (filter: boolean): void => {
+    dispatch(changeFilter(filter));
   };
 
   return (
     <Box className={classes.filterBox}>
       <Button size='small'
               color='primary'
-              variant={all ? "contained" : "outlined"}
-              onClick={changeHandler}
+              variant={showAll ? "contained" : "outlined"}
+              onClick={changeHandler.bind(null, true)}
       >
         All
       </Button>
       <Button size='small'
               color='secondary'
-              variant={!all ? "contained" : "outlined"}
-              onClick={changeHandler}
+              variant={!showAll ? "contained" : "outlined"}
+              onClick={changeHandler.bind(null, false)}
       >
         Completed
       </Button>

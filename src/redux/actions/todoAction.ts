@@ -12,6 +12,7 @@ export const DELETE_TODO_ERROR = "DELETE_TODO_ERROR";
 export const UPDATE_TODO = "UPDATE_TODO";
 export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 export const UPDATE_TODO_ERROR = "UPDATE_TODO_ERROR";
+export const CHANGE_FILTER = "CHANGE_FILTER";
 
 
 export const fetchStart = (): TodosActionType => {
@@ -92,5 +93,12 @@ export const updateTodoError = (error: string): TodosActionType => {
   return {
     type: UPDATE_TODO_ERROR,
     payload: error
+  };
+};
+
+export const changeFilter = (filter: boolean): TodosActionType => {
+  return {
+    type: CHANGE_FILTER,
+    payload: filter
   };
 };

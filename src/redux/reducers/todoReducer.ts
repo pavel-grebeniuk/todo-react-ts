@@ -1,5 +1,6 @@
 import {TodosActionType, TodosState} from "../types/todoTypes";
 import {
+  CHANGE_FILTER,
   CREATE_TODO,
   CREATE_TODO_ERROR,
   CREATE_TODO_SUCCESS,
@@ -149,6 +150,11 @@ export const todoReducer = (state = initialState,
           error: action.payload,
           loaded: false
         }
+      };
+
+    case CHANGE_FILTER:
+      return {
+        ...state, showAll: action.payload
       };
 
     default:

@@ -1,4 +1,5 @@
 import {
+  CHANGE_FILTER,
   CREATE_TODO,
   CREATE_TODO_ERROR,
   CREATE_TODO_SUCCESS,
@@ -90,6 +91,11 @@ export interface updateTodoError {
   payload: string
 }
 
+export interface changeFilter {
+  type: typeof CHANGE_FILTER,
+  payload: boolean
+}
+
 export type TodosActionType =
   FetchTodosSuccessAction
   | FetchTodosStartAction
@@ -103,3 +109,4 @@ export type TodosActionType =
   | updateTodo
   | updateTodoSuccess
   | updateTodoError
+  | changeFilter
