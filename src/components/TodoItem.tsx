@@ -36,13 +36,13 @@ export const TodoItem: React.FC<TodoProps> = (
   {todo}): React.ReactElement => {
 
   const classes = useStyles();
-  const {text, completed, id, createdAt, updatedAt} = todo;
   const history = useHistory();
-
   const dispatch = useDispatch();
 
+  const {text, completed, id, createdAt, updatedAt} = todo;
+
   const onRemove = (id: number): void => {
-    dispatch(deleteTodo(id));
+    window.confirm("Delete todo?") && dispatch(deleteTodo(id));
   };
 
   const onCheckCompleted = (todo: Todo): void => {
