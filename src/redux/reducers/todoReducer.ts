@@ -40,7 +40,8 @@ export const todoReducer = (state = initialState,
           ...state.fetchRequest,
           loading: true,
           error: undefined
-        }
+        },
+        updateRequest: {...state.updateRequest, loaded: false}
       };
 
     case FETCH_TODOS_SUCCESS:
@@ -125,7 +126,8 @@ export const todoReducer = (state = initialState,
         ...state, updateRequest: {
           ...state.updateRequest,
           loading: true,
-          error: undefined
+          error: undefined,
+          loaded: false
         }
       };
 
