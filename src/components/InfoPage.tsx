@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export const InfoPage: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();

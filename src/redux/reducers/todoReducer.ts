@@ -18,7 +18,7 @@ import {RequestState} from "../types/rootTypes";
 
 const requestState: RequestState = {
   loading: false,
-  error: null,
+  error: undefined,
   loaded: false
 };
 
@@ -39,7 +39,7 @@ export const todoReducer = (state = initialState,
         ...state, fetchRequest: {
           ...state.fetchRequest,
           loading: true,
-          error: null
+          error: undefined
         }
       };
 
@@ -69,7 +69,7 @@ export const todoReducer = (state = initialState,
         ...state, createRequest: {
           ...state.createRequest,
           loading: true,
-          error: null,
+          error: undefined,
         }
       };
 
@@ -97,7 +97,7 @@ export const todoReducer = (state = initialState,
         ...state, deleteRequest: {
           ...state.deleteRequest,
           loading: true,
-          error: null
+          error: undefined
         }
       };
 
@@ -125,7 +125,7 @@ export const todoReducer = (state = initialState,
         ...state, updateRequest: {
           ...state.updateRequest,
           loading: true,
-          error: null
+          error: undefined
         }
       };
 

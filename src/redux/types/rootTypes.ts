@@ -6,6 +6,6 @@ import {TodosState} from "./todoTypes";
 
 export interface RequestState {
   readonly loading: boolean
-  readonly error: string | null
+  readonly error?: string
   loaded: boolean;
 }

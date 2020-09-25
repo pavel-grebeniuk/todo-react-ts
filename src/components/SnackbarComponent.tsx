@@ -3,21 +3,18 @@ import Snackbar from "@material-ui/core/Snackbar";
 import {Alert} from "@material-ui/lab";
 
 type SnackbarComponentProps = {
-  message: string | null,
+  message?: string,
   severity: "success" | "error",
   open: boolean,
   setOpen: (open: boolean) => void,
 }
 
-
 export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props): React.ReactElement => {
   const {severity, message, open, setOpen} = props;
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   };
-
-  console.log('snack');
   return (
     <Snackbar
       anchorOrigin={{vertical: "top", horizontal: "center"}}

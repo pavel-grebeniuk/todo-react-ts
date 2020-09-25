@@ -1,21 +1,5 @@
 import {Todo} from "../redux/types/todoTypes";
 
-
-type ApiType = {
-  todos: TodosApi
-}
-
-type TodosApi = {
-  getAll: () => Promise<Todo[] | Error>,
-  create: (todo: string) => Promise<Todo | Error>,
-  delete: (id: number) => Promise<{} | Error>,
-  update: (id: number, todo: string) => Promise<Todo | Error>,
-}
-
-type Error = {
-  statusText: string,
-}
-
 enum HTTPMethod {
   Get = "GET",
   Post = "POST",
@@ -45,22 +29,20 @@ const fetchApi = async <T, E>(url: string, method: HTTPMethod, body: string | nu
       "Content-Type": "application/json"
     }
   });
-  if (response.ok) {
+  if (response.status === 200 || response.status === 201) {
     return response.json();
   } else {
     throw new Error(
-      response.status === 404
-        ? `${response.statusText}: ${generateErrorMsg(method)}`
-        : `Server error: ${generateErrorMsg(method)}`
+      `${response.statusText}: ${generateErrorMsg(method)}`
     );
   }
 };
 
-export const api: ApiType = {
+export const api = {
   todos: {
     getAll: () => fetchApi<Todo[], Error>("todos/", HTTPMethod.Get, null),
-    create: (todo) => fetchApi<Todo, Error>("todos/", HTTPMethod.Post, todo),
-    delete: (id) => fetchApi<{}, Error>("todos/" + id, HTTPMethod.Delete, null),
-    update: (id, todo) => fetchApi<Todo, Error>("todos/" + id, HTTPMethod.Put, todo),
+    create: (todo: string) => fetchApi<Todo, Error>("todos/", HTTPMethod.Post, todo),
+    delete: (id: number) => fetchApi<{}, Error>("todos/" + id, HTTPMethod.Delete, null),
+    update: (id: number, todo: string) => fetchApi<Todo, Error>("todos/" + id, HTTPMethod.Put, todo),
   }
 };
