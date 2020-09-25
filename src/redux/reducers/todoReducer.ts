@@ -28,6 +28,7 @@ const initialState: TodosState = {
   createRequest: requestState,
   deleteRequest: requestState,
   updateRequest: requestState,
+  showAll: true
 };
 
 export const todoReducer = (state = initialState,

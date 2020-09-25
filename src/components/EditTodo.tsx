@@ -12,7 +12,7 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     editBtn: {
-      margin: '0 5px'
+      margin: "0 5px"
     }
   }),
 );
@@ -38,7 +38,7 @@ export const EditTodo: React.FC = () => {
     const editHandler = (): void => {
       if (todo.text !== todoText) {
         const newTodo: Todo = {
-          ...todo, text: todoText
+          ...todo, text: todoText, updatedAt: Date.now()
         };
         dispatch(updateTodo(newTodo));
       }

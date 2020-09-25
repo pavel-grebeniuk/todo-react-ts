@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
     todoCompleted: {
       textDecoration: "line-through",
       color: theme.palette.text.secondary
+    },
+    todoDate: {
+      color: theme.palette.text.secondary,
+      fontSize: 10
     }
   }),
 );
@@ -32,7 +36,7 @@ export const TodoItem: React.FC<TodoProps> = (
   {todo}): React.ReactElement => {
 
   const classes = useStyles();
-  const {text, completed, id} = todo;
+  const {text, completed, id, createdAt, updatedAt} = todo;
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -42,7 +46,11 @@ export const TodoItem: React.FC<TodoProps> = (
   };
 
   const onCheckCompleted = (todo: Todo): void => {
-    const updatedTodo = {...todo, completed: !todo.completed};
+    const updatedTodo = {
+      ...todo,
+      completed: !todo.completed,
+      updatedAt: Date.now()
+    };
     dispatch(updateTodo(updatedTodo));
   };
 
@@ -64,6 +72,22 @@ export const TodoItem: React.FC<TodoProps> = (
       <ListItemText>
         <Box className={todo.completed ? classes.todoCompleted : ""}>
           {text}
+        </Box>
+        <Box className={classes.todoDate}>
+          {
+            updatedAt && !completed
+              ?
+              <> Updated:
+                <i> {new Date(updatedAt).toLocaleString("ru-RU")}</i></>
+              :
+              updatedAt && completed
+                ?
+                <> Done:
+                  <i> {new Date(updatedAt).toLocaleString("ru-RU")}</i></>
+                :
+                <> Created:
+                  <i> {new Date(createdAt).toLocaleString("ru-RU")}</i></>
+          }
         </Box>
       </ListItemText>
       <ListItemSecondaryAction>

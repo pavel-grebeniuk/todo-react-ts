@@ -15,7 +15,8 @@ import {
 import {RequestState} from "./rootTypes";
 
 export interface TodosState {
-  readonly entities: Array<Todo>,
+  readonly entities: Array<Todo>
+  readonly showAll: boolean
   readonly fetchRequest: RequestState
   readonly createRequest: RequestState
   readonly deleteRequest: RequestState
@@ -29,6 +30,8 @@ export interface Todo extends NewTodo {
 export interface NewTodo {
   text: string;
   completed: boolean;
+  createdAt: number;
+  updatedAt?: number
 }
 
 interface FetchTodosSuccessAction {

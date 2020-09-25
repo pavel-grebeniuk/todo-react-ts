@@ -19,7 +19,8 @@ export const CreateTodo: React.FC = (): React.ReactElement => {
     if (e.key === "Enter" && todoText.trim()) {
       const todo: NewTodo = {
         text: todoText.trim(),
-        completed: false
+        completed: false,
+        createdAt: +Date.now()
       };
       dispatch(createTodo(todo));
       setTodoText("");
