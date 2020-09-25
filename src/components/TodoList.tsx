@@ -1,47 +1,22 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {TodoItem} from "./TodoItem";
-import {useTodosFetch} from "../hooks/useTodosFetch";
-import {LoaderComponent} from "./Loader";
-import {Box} from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {SnackbarComponent} from "./SnackbarComponent";
+import {useSelector} from "react-redux";
+import {AppState} from "../redux/reducers/rootReducer";
+import {TodosState} from "../redux/types/todoTypes";
+import {useTodosFetch} from "../hooks/useTodosFetch";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    loaderBox: {
-      height: 10
-    },
-  }),
-);
 
-export const TodoList: React.FC = (props): React.ReactElement => {
-  const classes = useStyles();
-
+export const TodoList: React.FC = (): React.ReactElement => {
+  useTodosFetch();
   const {
     entities: todos,
-    fetchRequest: {loading: fetchLoading, loaded, error: fetchError},
-    createRequest: {loading: createLoading, error: createError},
-    updateRequest: {loading: updateLoading, error: updateError},
-    deleteRequest: {loading: deleteLoading, error: deleteError}
-  } = useTodosFetch();
-
-  const [open, setOpen] = useState<boolean>(false);
-
-  const isLoading = fetchLoading || createLoading || updateLoading || deleteLoading;
-  const error = fetchError || createError || updateError || deleteError;
-
-  useEffect(() => {
-    setOpen(!!error);
-  }, [error]);
+    fetchRequest: {loaded},
+  } = useSelector<AppState, TodosState>(state => state.todo);
 
   return (
     <>
-      <Box className={classes.loaderBox}>
-        {isLoading && <LoaderComponent/>}
-      </Box>
       {
         !todos.length && loaded ?
           <Alert severity="warning">Todolist is empty!</Alert>
@@ -56,12 +31,6 @@ export const TodoList: React.FC = (props): React.ReactElement => {
               ))
             }
           </List>
-      }
-      {
-        open && <SnackbarComponent message={error}
-                                   severity={error ? "error" : "success"}
-                                   open={open}
-                                   setOpen={setOpen}/>
       }
     </>
   );

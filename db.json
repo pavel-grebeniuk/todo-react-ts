@@ -2,7 +2,7 @@
   "todos": [
     {
       "text": "rere",
-      "completed": false,
+      "completed": true,
       "id": 5
     },
     {
@@ -11,9 +11,19 @@
       "id": 6
     },
     {
-      "text": "fdf",
+      "text": "gfgf",
       "completed": false,
       "id": 7
+    },
+    {
+      "text": "fgfg",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "text": "fgfgffdf",
+      "completed": false,
+      "id": 9
     }
   ]
 }

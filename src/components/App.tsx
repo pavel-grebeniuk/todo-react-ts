@@ -6,6 +6,8 @@ import {NavBar} from "./Navbar";
 import {Container} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {InfoPage} from "./InfoPage";
+import {ErrorComponent} from "./ErrorComponent";
+import {LoadingComponent} from "./LoadingComponent";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,7 +26,6 @@ export const App: React.FC = () => {
       <Router>
         <NavBar/>
         <Container className={classes.pageContainer}>
-
           <Switch>
             <Route path="/" exact>
               <TodoPage/>
@@ -34,6 +35,8 @@ export const App: React.FC = () => {
             </Route>
           </Switch>
         </Container>
+        <ErrorComponent/>
+        <LoadingComponent/>
       </Router>
     </>
   );
