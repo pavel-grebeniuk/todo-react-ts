@@ -29,7 +29,7 @@ export const EditTodo: React.FC = () => {
 
     const todo = useSelector<AppState, Todo>(state => selectTodoById(state, +id));
     const {updateRequest: {loaded, error}} = useSelector<AppState, TodosState>(state => state.todo);
-    const [todoText, setTodoText] = useState<string>(todo?.text);
+    const [todoText, setTodoText] = useState(todo.text);
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
       setTodoText(e.target.value);
@@ -61,7 +61,7 @@ export const EditTodo: React.FC = () => {
         </Grid>
         <Grid item>
           <Button
-            disabled={todo ? todo.text === todoText : false}
+            disabled={todo.text === todoText}
             type='button'
             size="small"
             color="primary"

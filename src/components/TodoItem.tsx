@@ -32,8 +32,7 @@ export type TodoProps = {
   todo: Todo,
 }
 
-export const TodoItem: React.FC<TodoProps> = (
-  {todo}): React.ReactElement => {
+export const TodoItem: React.FC<TodoProps> = ({todo}) => {
 
   const classes = useStyles();
   const history = useHistory();

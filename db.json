@@ -1,18 +1,18 @@
 {
   "todos": [
     {
-      "text": "trtryty",
-      "completed": false,
+      "text": "todo1",
+      "completed": true,
       "createdAt": 1601046035020,
       "id": 1,
-      "updatedAt": 1601049219111
+      "updatedAt": 1601228803701
     },
     {
-      "text": "dfdfrtrthgfhgfdf",
+      "text": "test1",
       "completed": false,
       "createdAt": 1601046225741,
       "id": 2,
-      "updatedAt": 1601049541486
+      "updatedAt": 1601227731025
     }
   ]
 }

@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const TodoList: React.FC = (): React.ReactElement => {
+export const TodoList: React.FC = () => {
   useTodosFetch();
   const classes = useStyles();
 
   const selectCompleted = (todos: Todo[], flag: boolean): Todo[] => {
-    return flag ? todos : todos.filter(el => el.completed) as Todo[];
+    return flag ? todos : todos.filter(el => el.completed);
   };
   const {fetchRequest: {loaded}} = useSelector<AppState, TodosState>(state => state.todo);
   const todos = useSelector<AppState, Todo[]>(state => selectCompleted(state.todo.entities, state.todo.showAll));

@@ -20,5 +20,4 @@ export const LoadingComponent: React.FC = () => {
       <LoaderComponent/>
     );
   } else return null;
-
 };

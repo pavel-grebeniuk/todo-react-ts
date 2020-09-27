@@ -19,7 +19,6 @@ import {RequestState} from "../types/rootTypes";
 
 const requestState: RequestState = {
   loading: false,
-  error: undefined,
   loaded: false
 };
 

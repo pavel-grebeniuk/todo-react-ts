@@ -6,10 +6,10 @@ type SnackbarComponentProps = {
   message?: string,
   severity: "success" | "error",
   open: boolean,
-  setOpen: (open: boolean) => void,
+  setOpen(open: boolean): void,
 }
 
-export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props): React.ReactElement => {
+export const SnackbarComponent: React.FC<SnackbarComponentProps> = (props) => {
   const {severity, message, open, setOpen} = props;
 
   const handleClose = (): void => {
